@@ -730,5 +730,37 @@
       "prompt": "content"
     },
     "folder": "python"
+  },
+  "colorbench": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/Qwen2.5-VL/qwen-vl-finetune/colorbench/train.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "image"
+    }
+  },
+  "qinstruct_ori_qa": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_qa.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_aq": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_aq.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_iqa": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_iqa.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
   }
 }
