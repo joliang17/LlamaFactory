@@ -17,7 +17,7 @@ import os
 import pytest
 import torch
 from PIL import Image
-from transformers import AutoConfig, AutoModelForVision2Seq
+from transformers import AutoConfig, AutoModelForImageTextToText
 
 from llamafactory.data import get_template_and_fix_tokenizer
 from llamafactory.data.collator import MultiModalDataCollatorForSeq2Seq, prepare_4d_attention_mask
@@ -29,7 +29,7 @@ from llamafactory.model import load_tokenizer
 TINY_LLAMA3 = os.getenv("TINY_LLAMA3", "llamafactory/tiny-random-Llama-3")
 
 
-@pytest.mark.runs_on(["cpu"])
+@pytest.mark.runs_on(["cpu", "mps"])
 def test_base_collator():
     model_args, data_args, *_ = get_infer_args({"model_name_or_path": TINY_LLAMA3, "template": "default"})
     tokenizer_module = load_tokenizer(model_args)
@@ -73,7 +73,7 @@ def test_base_collator():
         assert batch_input[k].eq(torch.tensor(expected_input[k])).all()
 
 
-@pytest.mark.runs_on(["cpu"])
+@pytest.mark.runs_on(["cpu", "mps"])
 def test_multimodal_collator():
     model_args, data_args, *_ = get_infer_args(
         {"model_name_or_path": "Qwen/Qwen2-VL-2B-Instruct", "template": "qwen2_vl"}
@@ -82,7 +82,7 @@ def test_multimodal_collator():
     template = get_template_and_fix_tokenizer(tokenizer_module["tokenizer"], data_args)
     config = AutoConfig.from_pretrained(model_args.model_name_or_path)
     with torch.device("meta"):
-        model = AutoModelForVision2Seq.from_config(config)
+        model = AutoModelForImageTextToText.from_config(config)
 
     data_collator = MultiModalDataCollatorForSeq2Seq(
         template=template,
