@@ -39,4 +39,6 @@ envsubst < examples/merge_lora/qwen3vl_lora_sft_template_4b.yaml \
 llamafactory-cli train temperate/${TASK_NAME}.yaml
 llamafactory-cli export temperate/${TASK_NAME}_merge.yaml
 
+rm -rf ${OUTPUT_DIR}
+
 

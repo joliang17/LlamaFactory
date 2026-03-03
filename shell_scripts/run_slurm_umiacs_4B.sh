@@ -10,7 +10,7 @@ TASK_NAME=$1
 DATASET=$2
 export TASK_NAME
 
-TMP_SCRIPT=$(mktemp $(pwd)/slurm_job_XXXXXX.slurm)
+TMP_SCRIPT=$(mktemp "$(pwd)/${TASK_NAME}.XXXXXX.slurm")
 cat <<EOL > $TMP_SCRIPT
 #!/bin/bash
 
@@ -18,10 +18,9 @@ cat <<EOL > $TMP_SCRIPT
 #SBATCH --output=$(pwd)/slurm_output/${TASK_NAME}.log
 #SBATCH --error=$(pwd)/slurm_output/${TASK_NAME}.log
 #SBATCH --time=48:00:00
-#SBATCH --account=cml-director
-#SBATCH --partition=cml-director
-#SBATCH --qos=cml-high_long
-#SBATCH --gres=gpu:a100:1
+#SBATCH --account=scavenger 
+#SBATCH --partition=scavenger
+#SBATCH --gres=gpu:rtxa5000:1
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=64G
 
