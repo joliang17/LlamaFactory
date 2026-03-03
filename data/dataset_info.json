@@ -747,24 +747,160 @@
       "images": "image"
     }
   },
-  "qinstruct_ori_qa": {
-    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_qa.json",
+  "qinstruct_ori_qa_6k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_qa_6k.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "conversations",
       "images": "images"
     }
   },
-  "qinstruct_ori_aq": {
-    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_aq.json",
+  "qinstruct_ori_qa_3k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_qa_3k.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "conversations",
       "images": "images"
     }
   },
-  "qinstruct_ori_iqa": {
-    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_iqa.json",
+  "qinstruct_ori_aq_3k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_aq_3k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_iqa_3k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_iqa_3k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_qa_4k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_qa_4k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_qa_2k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_qa_2k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_aq_2k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_aq_2k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_aq_1k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_aq_1k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_iqa_2k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_iqa_2k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_ori_iqa_1k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_ori_iqa_1k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_new_qa_2k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_new_qa_2k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_new_aq_2k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_new_aq_2k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_new_aq_1k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_new_aq_1k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_new_iqa_2k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_new_iqa_2k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "qinstruct_new_iqa_1k": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training/qinstruct_new_iqa_1k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "geo_oq_oa": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training_aqa/geo_oq_oa.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "geo_oq_oa_add": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training_aqa/geo_oq_oa_additional1k.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "geo_oa_oq": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training_aqa/geo_oa_oq.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "geo_oa_nq": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training_aqa/geo_oa_nq.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "geo_nq_na": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/training_aqa/geo_nq_na.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "conversations",

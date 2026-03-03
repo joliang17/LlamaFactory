@@ -30,10 +30,10 @@ export OUTPUT_DIR="/fs/nexus-projects/wilddiffusion/vlm/llama_factory/qwen_task/
 # envsubst < examples/train_lora/qwen2_5vl_lora_sft_qinstruct_template_envset.yaml \
 #   > tmp/${TASK_NAME}.yaml
 
-envsubst < examples/train_lora/qwen3vl_lora_sft_qinstruct_template_envset.yaml \
+envsubst < examples/train_lora/qwen3vl_lora_sft_qinstruct_template_envset_4b.yaml \
   > temperate/${TASK_NAME}.yaml
 
-envsubst < examples/merge_lora/qwen3vl_lora_sft_template.yaml \
+envsubst < examples/merge_lora/qwen3vl_lora_sft_template_4b.yaml \
   > temperate/${TASK_NAME}_merge.yaml
 
 llamafactory-cli train temperate/${TASK_NAME}.yaml
