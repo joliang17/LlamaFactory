@@ -17,7 +17,7 @@ cat <<EOL > $TMP_SCRIPT
 #SBATCH --job-name=${TASK_NAME}
 #SBATCH --output=$(pwd)/slurm_output/${TASK_NAME}.log
 #SBATCH --error=$(pwd)/slurm_output/${TASK_NAME}.log
-#SBATCH --time=48:00:00
+#SBATCH --time=24:00:00
 #SBATCH --account=scavenger 
 #SBATCH --partition=scavenger
 #SBATCH --gres=gpu:rtxa5000:1

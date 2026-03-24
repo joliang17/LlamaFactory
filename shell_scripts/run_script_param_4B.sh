@@ -3,7 +3,7 @@
 #SBATCH --job-name=train_qwen_lora
 #SBATCH --output=train_qwen_lora.log
 #SBATCH --error=train_qwen_lora.log
-#SBATCH --time=48:00:00
+#SBATCH --time=16:00:00
 #SBATCH --account=cml-director
 #SBATCH --partition=cml-director
 #SBATCH --qos=cml-high_long
