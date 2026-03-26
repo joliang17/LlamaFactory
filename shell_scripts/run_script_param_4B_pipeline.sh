@@ -27,6 +27,8 @@ export DATASET="qinstruct_new"
 export TASK_NAME="qwen3_qinstruct_new"
 export OUTPUT_DIR="/fs/nexus-projects/wilddiffusion/vlm/llama_factory/qwen_task/${TASK_NAME}"
 
+source /fs/nexus-scratch/yliang17/Research/VLA/config/key.conf
+
 mkdir -p temperate/
 envsubst < examples/train_lora/qwen3vl_lora_sft_qinstruct_template_envset_4b.yaml \
   > temperate/${TASK_NAME}.yaml
