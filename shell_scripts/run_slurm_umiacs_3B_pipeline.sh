@@ -17,8 +17,8 @@ cat <<EOL > $TMP_SCRIPT
 #SBATCH --job-name=${TASK_NAME}
 #SBATCH --output=$(pwd)/slurm_output/${TASK_NAME}.log
 #SBATCH --error=$(pwd)/slurm_output/${TASK_NAME}.log
-#SBATCH --time=24:00:00
-#SBATCH --account=scavenger 
+#SBATCH --time=36:00:00
+#SBATCH --account=scavenger
 #SBATCH --partition=scavenger
 #SBATCH --gres=gpu:rtxa5000:1
 #SBATCH --cpus-per-task=6
@@ -33,11 +33,11 @@ if [ ! -d "$(pwd)/slurm_output" ]; then
 fi
 
 
-grep -v "^#" shell_scripts/run_script_param_4B.sh \
+grep -v "^#" shell_scripts/run_script_param_3B_pipeline.sh \
   | sed -e "s/DATASET=.*/DATASET=${DATASET}/" \
         -e "s/TASK_NAME=.*/TASK_NAME=${TASK_NAME}/" \
   >> $TMP_SCRIPT
 
 sbatch $TMP_SCRIPT
 
-rm "$TMP_SCRIPT" 
+rm "$TMP_SCRIPT"

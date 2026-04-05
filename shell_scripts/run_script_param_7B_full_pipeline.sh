@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#SBATCH --job-name=train_qwen_lora
-#SBATCH --output=train_qwen_lora.log
-#SBATCH --error=train_qwen_lora.log
-#SBATCH --time=16:00:00
+#SBATCH --job-name=train_qwen25_7b_full
+#SBATCH --output=train_qwen25_7b_full.log
+#SBATCH --error=train_qwen25_7b_full.log
+#SBATCH --time=48:00:00
 #SBATCH --account=cml-director
 #SBATCH --partition=cml-director
 #SBATCH --qos=cml-high_long
-#SBATCH --gres=gpu:a100:1
-#SBATCH --cpus-per-task=6
-#SBATCH --mem=64G
+#SBATCH --gres=gpu:a100:2
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=128G
 
 source /etc/profile.d/modules.sh
 module add cuda/12.4.1
@@ -23,26 +23,20 @@ export HF_MODULES_CACHE="/fs/nexus-projects/wilddiffusion/cache"
 export TRANSFORMERS_CACHE="/fs/nexus-projects/wilddiffusion/cache"
 
 export WANDB_PROJECT="TaskGen"
-export DATASET="qinstruct_new"
-export TASK_NAME="qwen3_qinstruct_new"
+export DATASET="sat_mix_qa_only_50k"
+export TASK_NAME="qwen25_7b_full_sat_mix_qa_only_50k"
 export OUTPUT_DIR="/fs/nexus-projects/wilddiffusion/vlm/llama_factory/qwen_task/${TASK_NAME}"
 
 source /fs/nexus-scratch/yliang17/Research/VLA/config/key.conf
 
 mkdir -p temperate/
-envsubst < examples/train_lora/qwen3vl_lora_sft_qinstruct_template_envset_4b.yaml \
+envsubst < examples/train_full/qwen25vl_full_sft_template_envset_7b.yaml \
   > temperate/${TASK_NAME}.yaml
 
-envsubst < examples/merge_lora/qwen3vl_lora_sft_template_4b.yaml \
-  > temperate/${TASK_NAME}_merge.yaml
-
-llamafactory-cli train temperate/${TASK_NAME}.yaml
-llamafactory-cli export temperate/${TASK_NAME}_merge.yaml
-
-rm -rf ${OUTPUT_DIR}
+FORCE_TORCHRUN=1 llamafactory-cli train temperate/${TASK_NAME}.yaml
 
 export MODEL_NAME="${MODEL_NAME:-${TASK_NAME}}"
-export MERGED_MODEL_DIR="${OUTPUT_DIR}_merged"
+export MERGED_MODEL_DIR="${OUTPUT_DIR}"
 export VLMEVAL_CONFIG="/fs/nexus-scratch/yliang17/Research/VLM/VLMEvalKit/vlmeval/config.py"
 
 python3 - <<'PY'
@@ -55,24 +49,18 @@ model_name = os.environ["MODEL_NAME"]
 model_path = os.environ["MERGED_MODEL_DIR"]
 
 entry = f'''    "{model_name}": partial(
-        Qwen3VLChat,
+        Qwen2VLChat,
         model_path="{model_path}",
+        min_pixels=1280 * 28 * 28,
+        max_pixels=16384 * 28 * 28,
         use_custom_prompt=False,
-        use_vllm=False,
-        do_sample=False,
-        temperature=0.7,
-        max_new_tokens=4096,
-        repetition_penalty=1.0,
-        presence_penalty=1.5,
-        top_p=0.8,
-        top_k=20
     ),
 '''
 
 text = config_path.read_text()
-series_match = re.search(r"(qwen3vl_series\s*=\s*\{)(.*?)(\n\})", text, flags=re.S)
+series_match = re.search(r"(qwen2vl_series\s*=\s*\{)(.*?)(\n\})", text, flags=re.S)
 if series_match is None:
-    raise RuntimeError(f"Failed to locate qwen3vl_series in {config_path}")
+    raise RuntimeError(f"Failed to locate qwen2vl_series in {config_path}")
 
 body = series_match.group(2)
 entry_pattern = re.compile(rf'\n    \"{re.escape(model_name)}\": partial\(\n(?:        .*\n)+?    \),\n')
@@ -89,6 +77,4 @@ PY
 
 cd /fs/nexus-scratch/yliang17/Research/VLM/VLMEvalKit
 
-python run.py --data CV-Bench-2D CV-Bench-3D --model "${MODEL_NAME}" 
-
-
+python run.py --data CV-Bench-2D CV-Bench-3D --model "${MODEL_NAME}"

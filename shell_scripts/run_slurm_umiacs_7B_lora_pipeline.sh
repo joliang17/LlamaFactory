@@ -2,7 +2,7 @@
 
 # Check if the required arguments are provided
 if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 <task_name> <data_name> "
+  echo "Usage: $0 <task_name> <data_name>"
   exit 1
 fi
 
@@ -24,6 +24,7 @@ cat <<EOL > $TMP_SCRIPT
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=64G
 
+
 cd $(pwd)
 
 EOL
@@ -32,12 +33,11 @@ if [ ! -d "$(pwd)/slurm_output" ]; then
   mkdir -p "$(pwd)/slurm_output"
 fi
 
-
-grep -v "^#" shell_scripts/run_script_param_4B_pipeline.sh \
+grep -v "^#" shell_scripts/run_script_param_7B_lora_pipeline.sh \
   | sed -e "s/DATASET=.*/DATASET=${DATASET}/" \
         -e "s/TASK_NAME=.*/TASK_NAME=${TASK_NAME}/" \
   >> $TMP_SCRIPT
 
-# sbatch $TMP_SCRIPT
+sbatch $TMP_SCRIPT
 
-# rm "$TMP_SCRIPT" 
+rm "$TMP_SCRIPT"

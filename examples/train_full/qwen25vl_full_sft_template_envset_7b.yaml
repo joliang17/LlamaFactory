@@ -7,23 +7,25 @@ trust_remote_code: true
 ### method
 stage: sft
 do_train: true
-finetuning_type: lora
-lora_rank: 8
-lora_target: all
+finetuning_type: full
+freeze_vision_tower: true
+freeze_multi_modal_projector: true
+freeze_language_model: false
+deepspeed: examples/deepspeed/ds_z3_config.json
 
 ### dataset
-dataset: ${DATASET}  # video: mllm_video_demo
+dataset: ${DATASET}
 template: qwen2_vl
 cutoff_len: 4096
-max_samples: None
+max_samples: 4000
 overwrite_cache: true
-preprocessing_num_workers: 4
-dataloader_num_workers: 2
+preprocessing_num_workers: 16
+dataloader_num_workers: 4
 
 ### output
 output_dir: ${OUTPUT_DIR}
 logging_steps: 10
-save_steps: 1000
+save_steps: 10000
 plot_loss: true
 overwrite_output_dir: true
 save_only_model: false
@@ -33,13 +35,12 @@ run_name: ${TASK_NAME}
 ### train
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 8
-learning_rate: 1.0e-4
-num_train_epochs: 3.0
+learning_rate: 1.0e-5
+num_train_epochs: 1.0
 lr_scheduler_type: cosine
 warmup_ratio: 0.1
 bf16: true
 ddp_timeout: 180000000
-resume_from_checkpoint: null
 
 ### eval
 # val_size: 0.1
