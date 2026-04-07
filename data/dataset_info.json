@@ -1147,5 +1147,27 @@
       "messages": "conversations",
       "images": "images"
     }
+  },
+  "dpo_qgen_format1": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/output/data/dpo/dpo_format1.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "conversations",
+      "chosen": "chosen",
+      "rejected": "rejected",
+      "images": "images"
+    }
+  },
+  "dpo_qgen_format2": {
+    "file_name": "/fs/nexus-scratch/yliang17/Research/VLM/task_generation/output/data/dpo/dpo_format2.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "conversations",
+      "chosen": "chosen",
+      "rejected": "rejected",
+      "images": "images"
+    }
   }
 }

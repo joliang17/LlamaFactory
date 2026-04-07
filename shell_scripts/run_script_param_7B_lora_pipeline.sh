@@ -25,6 +25,8 @@ export TRANSFORMERS_CACHE="/fs/nexus-projects/wilddiffusion/cache"
 export WANDB_PROJECT="TaskGen"
 export DATASET="sat_mix_qa_only_50k"
 export TASK_NAME="qwen25_7b_lora_sat_mix_qa_only_50k"
+export NUM_EPOCHS="1.0"
+export LEARNING_RATE="1.0e-4"
 export OUTPUT_DIR="/fs/nexus-projects/wilddiffusion/vlm/llama_factory/qwen_task/${TASK_NAME}"
 
 source /fs/nexus-scratch/yliang17/Research/VLA/config/key.conf

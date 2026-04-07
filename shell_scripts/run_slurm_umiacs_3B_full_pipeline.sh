@@ -19,13 +19,13 @@ cat <<EOL > $TMP_SCRIPT
 #SBATCH --job-name=${TASK_NAME}
 #SBATCH --output=$(pwd)/slurm_output/${TASK_NAME}.log
 #SBATCH --error=$(pwd)/slurm_output/${TASK_NAME}.log
-#SBATCH --time=36:00:00
-#SBATCH --account=scavenger
-#SBATCH --partition=scavenger
-#SBATCH --gres=gpu:rtxa5000:1
-#SBATCH --cpus-per-task=6
+#SBATCH --time=48:00:00
+#SBATCH --account=cml-director
+#SBATCH --partition=cml-director
+#SBATCH --qos=cml-high_long
+#SBATCH --gres=gpu:a100:1
+#SBATCH --cpus-per-task=16
 #SBATCH --mem=128G
-
 cd $(pwd)
 
 EOL
@@ -34,8 +34,7 @@ if [ ! -d "$(pwd)/slurm_output" ]; then
   mkdir -p "$(pwd)/slurm_output"
 fi
 
-
-grep -v "^#" shell_scripts/run_script_param_3B_pipeline.sh \
+grep -v "^#" shell_scripts/run_script_param_3B_full_pipeline.sh \
   | sed -e "s/DATASET=.*/DATASET=${DATASET}/" \
         -e "s/TASK_NAME=.*/TASK_NAME=${TASK_NAME}/" \
         ${NUM_EPOCHS:+-e "s/NUM_EPOCHS=.*/NUM_EPOCHS=\"${NUM_EPOCHS}\"/"}  \

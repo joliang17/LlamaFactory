@@ -25,6 +25,8 @@ export TRANSFORMERS_CACHE="/fs/nexus-projects/wilddiffusion/cache"
 export WANDB_PROJECT="TaskGen"
 export DATASET="qinstruct_new"
 export TASK_NAME="qwen3_qinstruct_new"
+export NUM_EPOCHS="3.0"
+export LEARNING_RATE="1.0e-4"
 export OUTPUT_DIR="/fs/nexus-projects/wilddiffusion/vlm/llama_factory/qwen_task/${TASK_NAME}"
 
 source /fs/nexus-scratch/yliang17/Research/VLA/config/key.conf
@@ -90,5 +92,8 @@ PY
 cd /fs/nexus-scratch/yliang17/Research/VLM/VLMEvalKit
 
 python run.py --data CV-Bench-2D CV-Bench-3D --model "${MODEL_NAME}" 
+
+python run.py --data CV-Bench-2D CV-Bench-3D --model "${MODEL_NAME}" --mode infer
+
 
 
